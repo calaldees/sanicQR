@@ -22,16 +22,16 @@ def get_qr_png_base64(data: str) -> bytes:
 
 @app.get("/")
 async def root(request: sanic.Request) -> sanic.HTTPResponse:
-    return sanic.response.text("/png?data=xxx or /png_base64?data=xxx")
+    return sanic.response.text("/qr_png?data=xxx or /qr_png_base64?data=xxx")
 
 
-@app.get("/png")
+@app.get("/qr_png")
 async def qr_png(request: sanic.Request) -> sanic.HTTPResponse:
     data = request.args.get("data", "")
     return sanic.response.raw(get_qr_png_bytes(data), content_type="image/png")
 
 
-@app.get("/png_base64")
-async def qr_base64(request: sanic.Request) -> sanic.HTTPResponse:
+@app.get("/qr_png_base64")
+async def qr_png_base64(request: sanic.Request) -> sanic.HTTPResponse:
     data = request.args.get("data", "")
     return sanic.response.raw(get_qr_png_base64(data), content_type="text/plain")
