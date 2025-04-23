@@ -7,3 +7,5 @@ run: build
 	${DOCKER_RUN}
 shell:
 	${DOCKER_RUN} /bin/sh
+test: build
+	${DOCKER_RUN} python3 -m doctest --fail-fast app.py
